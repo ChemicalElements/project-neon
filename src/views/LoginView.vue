@@ -1,5 +1,52 @@
 <template>
-  <h1 class="text-4xl my-4 font-bold pageName">Acesse sua conta</h1>
+  <main class="flex h-full w-full justify-center">
+    <article
+      class="mt-8 flex w-[450px] flex-col rounded-lg bg-white p-4 shadow-md"
+    >
+      <!-- smarti logo  -->
+      <img
+        src="../assets/images/logo.png"
+        alt="Smarti Logo"
+        class="mx-auto mb-4 w-[250px] py-4"
+      />
+
+      <!-- form  -->
+      <form>
+        <InputField class="mb-4" id="email" type="email" placeholder="Email" />
+        <InputField
+          class="mb-4"
+          id="email"
+          type="password"
+          placeholder="Senha"
+        />
+
+        <FormButton class="mb-2" variant="primary"> Entrar </FormButton>
+
+        <FormButton class="mb-2" color="#DB4437">
+          <font-awesome-icon icon="fa-brands fa-google" class="mr-2" />
+          Entrar com Google
+        </FormButton>
+      </form>
+
+      <!-- forgot password and sign up  -->
+      <section>
+        <div class="mt-4 text-center">
+          <a href="#" class="text-sm text-gray-500 hover:underline"
+            >Esqueceu a senha?</a
+          >
+        </div>
+
+        <div class="mt-4 text-center">
+          <p class="text-sm text-gray-500">
+            Você não tem uma conta?
+            <a href="#" class="text-blue-500 hover:underline">Inscreva-se</a>
+          </p>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- <h1 class="text-4xl my-4 font-bold pageName">Acesse sua conta</h1>
   <form class="space-y-4">
     <div class="w-full max-w-md mx-auto px-3">
       <AlertText v-if="errMsg">
@@ -36,29 +83,37 @@
       <font-awesome-icon icon="fa-solid fa-id-card" class="mr-2"/>
       Demonstração
     </button>
-  </form>
+  </form> -->
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { useRouter } from "vue-router";
 import { useAppStore } from "@/store";
 import AlertText from "@/components/AlertText.vue";
+import InputField from "@/components/shared/InputField.vue";
+import FormButton from "@/components/shared/FormButton.vue";
 
-const appStore = useAppStore()
+const appStore = useAppStore();
 const email = ref("");
 const password = ref("");
 const router = ref(useRouter());
 const errMsg = ref("");
-const inputStyle = "outline-none border border-purple-500 focus:border-purple-600 bg-gray-100 rounded px-2 py-2 w-5/6 xs:w-3/5 max-w-xs"
+const inputStyle =
+  "outline-none border border-purple-500 focus:border-purple-600 bg-gray-100 rounded px-2 py-2 w-5/6 xs:w-3/5 max-w-xs";
 
 function logIn() {
   signInWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((result) => {
       console.log("Login realizado com sucesso");
       console.log("Current User:", result.user.uid);
-      appStore.userId = result.user.uid
+      appStore.userId = result.user.uid;
       router.value.push("/");
     })
     .catch((error) => {
@@ -86,7 +141,7 @@ function logInWithGoogle() {
     .then((result) => {
       console.log("Login realizado com sucesso");
       console.log("Current User:", result.user.uid);
-      appStore.userId = result.user.uid
+      appStore.userId = result.user.uid;
       router.value.push("/");
     })
     .catch((error) => {
@@ -94,12 +149,16 @@ function logInWithGoogle() {
     });
 }
 
-function logInDemo(){
-  signInWithEmailAndPassword(getAuth(), "conta_demonstracao@gmail.com", "demo_conta_05")
+function logInDemo() {
+  signInWithEmailAndPassword(
+    getAuth(),
+    "conta_demonstracao@gmail.com",
+    "demo_conta_05",
+  )
     .then((result) => {
       console.log("Login realizado com sucesso");
       console.log("Current User:", result.user.uid);
-      appStore.userId = result.user.uid
+      appStore.userId = result.user.uid;
       router.value.push("/");
     })
     .catch((error) => {

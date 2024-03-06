@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import colors from "tailwindcss/colors";
 
-const primary = colors.purple;
 const secondary = colors.gray;
 
 const setColor = (colorObject, defaultShade = 700) => ({
@@ -15,7 +14,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: setColor(primary),
+        primary: { DEFAULT: "#357F96" },
+        google: { DEFAULT: "#DB4437" },
         secondary: setColor(secondary),
       },
     },
