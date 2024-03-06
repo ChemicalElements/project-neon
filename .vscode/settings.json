@@ -18,5 +18,8 @@
     "index.html": true,
     ".lintstagedrc": true,
     "bun.lockb": true
+  },
+  "files.associations": {
+    "*.css": "postcss"
   }
 }
