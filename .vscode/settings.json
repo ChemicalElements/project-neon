@@ -11,7 +11,7 @@
     ".eslintrc.cjs": true,
     "tsconfig.json": true,
     "postcss.config.js": true,
-    "vite.config.ts": true,
+    "vite.config.ts": false,
     "pnpm-lock.yaml": true,
     ".prettierrc": true,
     "tsconfig.node.json": true,
